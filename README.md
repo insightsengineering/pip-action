@@ -23,6 +23,7 @@ steps:
 ```
 
 All options:
+
 ```yaml
 - uses: insightsengineering/pip-action@v2
   with:
@@ -141,6 +142,7 @@ It corresponds to the `--no-deps` argument for pip.
 It is a boolean input, so either `true` or `false` will work as inputs.
 
 **Examples:**
+
 ```yaml
 no-deps: true   # python -m pip install --no-deps package1
 no-deps: false  # python -m pip install package1
