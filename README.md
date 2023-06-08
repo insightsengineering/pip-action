@@ -5,7 +5,7 @@
 
 This action installs pip packages.
 
-**NOTE:** This is a fork of <https://github.com/BSFishy/pip-action>. The original action has been unmaintained for a while. This fork is actively maintained by the Roche/Genentech Inisghts Engineering Team.
+**NOTE:** This is a fork of <https://github.com/BSFishy/pip-action>. The original action has been unmaintained for a while. This fork is actively maintained by the Roche/Genentech Insights Engineering Team.
 
 ## Usage
 
