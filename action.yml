@@ -1,6 +1,6 @@
 name: Pip Installer v2
 author: Insights Engineering
-description: An action to automatically install Pip packages
+description: An action to automatically install Python Pip packages.
 runs:
   using: 'node16'
   main: 'dist/index.js'
