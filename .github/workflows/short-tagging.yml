@@ -6,6 +6,10 @@ on:
     types: [published, edited]
   workflow_dispatch:
 
+concurrency:
+  group: 'tagging-${{ github.head_ref || github.run_id }}'
+  cancel-in-progress: true
+
 jobs:
   actions-tagger:
     runs-on: ubuntu-latest
