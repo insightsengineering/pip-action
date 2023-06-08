@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: [2.7, 3.7, 3.8, 3.9, '3.10', 3.11]
+        python-version: [3.7, 3.8, 3.9, '3.10', 3.11]
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -60,7 +60,17 @@ jobs:
     - name: Run tests
       run: npm run test
 
-    - name: Test Report
+    - name: Upload JUnit test results
+      uses: actions/upload-artifact@v2
+      if: |
+        (success() || failure()) &&
+          matrix.os == 'ubuntu-latest' &&
+          matrix.node-version == '16'
+      with:
+        name: test-results
+        path: jest-junit.xml
+
+    - name: Publish Test Report
       uses: dorny/test-reporter@v1
       if: |
         (success() || failure()) &&
@@ -71,7 +81,7 @@ jobs:
         path: junit.xml
         reporter: jest-junit
 
-    - name: Coverage Report
+    - name: Publish Coverage Report
       if: |
         (success() || failure()) &&
           matrix.os == 'ubuntu-latest' &&
