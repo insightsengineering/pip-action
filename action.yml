@@ -1,4 +1,4 @@
-name: Pip Installer
+name: Pip Installer v2
 author: Insights Engineering
 description: An action to automatically install Pip packages
 runs:

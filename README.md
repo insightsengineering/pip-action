@@ -1,4 +1,4 @@
-# pip-action
+# PIP Installer v2
 
 [![SuperLinter](https://github.com/insightsengineering/pip-action/actions/workflows/linter.yml/badge.svg)](https://github.com/insightsengineering/pip-action/actions/workflows/linter.yml)
 [![Test 🧪](https://github.com/insightsengineering/pip-action/actions/workflows/test.yml/badge.svg)](https://github.com/insightsengineering/pip-action/actions/workflows/test.yml)
