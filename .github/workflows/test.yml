@@ -60,8 +60,8 @@ jobs:
       uses: dorny/test-reporter@v1
       if: |
         (success() || failure()) &&
-          "${{ matrix.os }}" == "ubuntu-latest" &&
-          "${{ matrix.node-version }}" == "16"
+          matrix.os == 'ubuntu-latest' &&
+          matrix.node-version == '16'
       with:
         name: JEST Tests
         path: reports/jest-*.xml
@@ -70,8 +70,8 @@ jobs:
     - name: Coverage Report
       if: |
         (success() || failure()) &&
-          "${{ matrix.os }}" == "ubuntu-latest" &&
-          "${{ matrix.node-version }}" == "16"
+          matrix.os == 'ubuntu-latest' &&
+          matrix.node-version == '16'
       uses: ArtiomTr/jest-coverage-report-action@v2
       with:
         test-script: npm run coverage
