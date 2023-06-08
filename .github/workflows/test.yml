@@ -68,7 +68,7 @@ jobs:
           matrix.node-version == '16'
       with:
         name: JEST Tests
-        path: reports/jest-*.xml
+        path: junit.xml
         reporter: jest-junit
 
     - name: Coverage Report
@@ -79,5 +79,3 @@ jobs:
       uses: ArtiomTr/jest-coverage-report-action@v2
       with:
         test-script: npm run coverage
-        coverage-file: report.json
-        base-coverage-file: report.json
