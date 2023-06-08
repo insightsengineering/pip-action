@@ -1,6 +1,7 @@
 # pip-action
 
-[![Test](https://github.com/insightsengineering/pip-action/workflows/Test/badge.svg)](https://github.com/insightsengineering/pip-action/actions)
+[![SuperLinter](https://github.com/insightsengineering/pip-action/actions/workflows/linter.yml/badge.svg)](https://github.com/insightsengineering/pip-action/actions/workflows/linter.yml)
+[![Test 🧪](https://github.com/insightsengineering/pip-action/actions/workflows/test.yml/badge.svg)](https://github.com/insightsengineering/pip-action/actions/workflows/test.yml)
 
 This action installs pip packages.
 
