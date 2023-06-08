@@ -54,4 +54,26 @@ jobs:
       run: npm install
 
     - name: Run tests
-      run: npm test
+      run: npm run test
+
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: |
+        (success() || failure()) &&
+          "${{ matrix.os }}" == "ubuntu-latest" &&
+          "${{ matrix.node-version }}" == "16"
+      with:
+        name: JEST Tests
+        path: reports/jest-*.xml
+        reporter: jest-junit
+
+    - name: Coverage Report
+      if: |
+        (success() || failure()) &&
+          "${{ matrix.os }}" == "ubuntu-latest" &&
+          "${{ matrix.node-version }}" == "16"
+      uses: ArtiomTr/jest-coverage-report-action@v2
+      with:
+        test-script: npm run coverage
+        coverage-file: report.json
+        base-coverage-file: report.json

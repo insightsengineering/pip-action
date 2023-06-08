@@ -5,6 +5,7 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   lint:
@@ -21,8 +22,8 @@ jobs:
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
-          VALIDATE_R: true
-          VALIDATE_YAML: true
-          VALIDATE_BASH_EXEC: true
-          VALIDATE_DOCKERFILE_HADOLINT: true
+          VALIDATE_GITHUB_ACTIONS: true
+          VALIDATE_GITLEAKS: true
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_TYPESCRIPT_STANDARD: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
