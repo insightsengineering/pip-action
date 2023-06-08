@@ -1,8 +1,8 @@
 name: Pip Installer
-author: BSFishy
+author: Insights Engineering
 description: An action to automatically install Pip packages
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
 branding:
   icon: 'arrow-down'

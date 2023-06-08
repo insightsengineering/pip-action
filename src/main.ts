@@ -119,6 +119,10 @@ export async function run() {
 
         await exec.exec(python, args);
     } catch (err) {
-        core.setFailed(err.message);
+        let errorMessage = "An error occurred while executing the pip package installation.";
+        if (err instanceof Error) {
+            errorMessage = err.message;
+        }
+        core.setFailed(errorMessage);
     }
 }

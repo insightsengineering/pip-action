@@ -21,7 +21,7 @@ function createInputFn(key: string, value: string): (name: string) => string {
     }
 }
 
-function createArgFn<T extends string | boolean | undefined>(key: string, value: string, expected: T, ret: () => T): jest.ProvidesCallback {
+function createArgFn < T extends string | boolean | undefined > (key: string, value: string, expected: T, ret: () => T): jest.ProvidesCallback {
     return async () => {
         inSpy.mockImplementation(createInputFn(key, value));
 
@@ -59,7 +59,7 @@ describe('pip-action', () => {
         expect(main.getStringInput('')).toBeUndefined();
     });
 
-    it('checks input string', async() => {
+    it('checks input string', async () => {
         inSpy.mockImplementation(() => 'value');
 
         expect(main.getStringInput('')).toBe('value');
@@ -166,55 +166,55 @@ describe('pip-action', () => {
 
     it('checks packages args', async () => {
         main.packages = ['value'];
-        
+
         expect(main.getArgs()).toEqual(['-m', 'pip', 'install', 'value']);
     });
 
     it('checks requirements args', async () => {
         main.requirements = 'value';
-        
+
         expect(main.getArgs()).toEqual(['-m', 'pip', 'install', '--requirement', 'value']);
     });
 
     it('checks constraints args', async () => {
         main.constraints = 'value';
-        
+
         expect(main.getArgs()).toEqual(['-m', 'pip', 'install', '--constraint', 'value']);
     });
 
     it('checks no-deps args', async () => {
         main.no_deps = true;
-        
+
         expect(main.getArgs()).toEqual(['-m', 'pip', 'install', '--no-deps']);
     });
 
     it('checks pre args', async () => {
         main.pre = true;
-        
+
         expect(main.getArgs()).toEqual(['-m', 'pip', 'install', '--pre']);
     });
 
     it('checks editable args', async () => {
         main.editable = 'value';
-        
+
         expect(main.getArgs()).toEqual(['-m', 'pip', 'install', '--editable', 'value']);
     });
 
     it('checks platform args', async () => {
         main.platform = 'value';
-        
+
         expect(main.getArgs()).toEqual(['-m', 'pip', 'install', '--platform', 'value']);
     });
 
     it('checks upgrade args', async () => {
         main.upgrade = true;
-        
+
         expect(main.getArgs()).toEqual(['-m', 'pip', 'install', '--upgrade']);
     });
 
     it('checks extra args', async () => {
         main.extra = 'value';
-        
+
         expect(main.getArgs()).toEqual(['-m', 'pip', 'install', 'value']);
     });
 
@@ -232,7 +232,7 @@ describe('pip-action', () => {
         delete process.env.pythonLocation;
         hasbinSpy.mockImplementation(() => true);
         inSpy.mockImplementation((name: string) => name == 'packages' ? 'value' : '');
-        execSpy.mockImplementation((commandLine: string, args?: string[]) => {
+        execSpy.mockImplementation((commandLine: string, args ? : string[]) => {
             expect(commandLine).toEqual('python');
             expect(args).toEqual(['-m', 'pip', 'install', 'value']);
         });
@@ -244,7 +244,7 @@ describe('pip-action', () => {
     it('checks env python run', async () => {
         process.env.pythonLocation = 'file';
         inSpy.mockImplementation((name: string) => name == 'packages' ? 'value' : '');
-        execSpy.mockImplementation((commandLine: string, args?: string[]) => {
+        execSpy.mockImplementation((commandLine: string, args ? : string[]) => {
             expect(commandLine).toEqual(path.join('file', 'python'));
             expect(args).toEqual(['-m', 'pip', 'install', 'value']);
         });

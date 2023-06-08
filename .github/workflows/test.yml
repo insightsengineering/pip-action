@@ -1,39 +1,57 @@
-name: Test
-on: [push]
+name: Test 🧪
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
 jobs:
   functionality:
-    name: Functionality
+    name: Functionality ⚙️
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: [2.7, 3.6, 3.7, 3.8, pypy2, pypy3]
+        python-version: [2.7, 3.7, 3.8, 3.9, '3.10', 3.11]
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+
     - name: Setup python
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
+
     - name: Install pip packages
       uses: ./
       with:
         packages: |
           pip-install-test
-          pip-install-test
+
     - name: Check if package is installed
       run: python -c 'import pip_install_test'
+
   code:
-    name: Code
-    runs-on: ubuntu-latest
+    name: Code 👩‍💻
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [16, 17, 18, 19, 20]
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
-    - name: Install node
-      uses: actions/setup-node@v1
+      uses: actions/checkout@v3
+
+    - name: Install node ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
       with:
-        node-version: '10.x'
+        node-version: ${{ matrix.node-version }}
+
     - name: Install dependencies
       run: npm install
+
     - name: Run tests
       run: npm test
