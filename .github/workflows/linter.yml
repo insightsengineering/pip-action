@@ -1,0 +1,33 @@
+---
+name: SuperLinter
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: 'lint-${{ github.head_ref || github.run_id }}'
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint Code Base
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Lint Code Base
+        uses: github/super-linter/slim@v5
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
+          VALIDATE_GITHUB_ACTIONS: true
+          VALIDATE_GITLEAKS: true
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_TYPESCRIPT_STANDARD: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
