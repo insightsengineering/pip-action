@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: [3.7, 3.8, 3.9, '3.10', 3.11, 3.12]
+        python-version: ['3.10', 3.11, 3.12]
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -44,7 +44,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: [16, 17, 18, 19, 20]
+        node-version: [18, 19, 20]
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -61,7 +61,7 @@ jobs:
       run: npm run test
 
     - name: Upload JUnit test results
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       if: |
         (success() || failure()) &&
           matrix.os == 'ubuntu-latest' &&
