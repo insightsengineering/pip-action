@@ -18,13 +18,13 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: [3.7, 3.8, 3.9, '3.10', 3.11]
+        python-version: [3.7, 3.8, 3.9, '3.10', 3.11, 3.12]
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
 
@@ -47,10 +47,10 @@ jobs:
         node-version: [16, 17, 18, 19, 20]
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Install node ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
 
@@ -65,7 +65,7 @@ jobs:
       if: |
         (success() || failure()) &&
           matrix.os == 'ubuntu-latest' &&
-          matrix.node-version == '16'
+          matrix.node-version == '20'
       with:
         name: test-results
         path: jest-junit.xml
@@ -75,7 +75,7 @@ jobs:
       if: |
         (success() || failure()) &&
           matrix.os == 'ubuntu-latest' &&
-          matrix.node-version == '16'
+          matrix.node-version == '20'
       with:
         name: JEST Tests
         path: junit.xml
@@ -85,7 +85,7 @@ jobs:
       if: |
         (success() || failure()) &&
           matrix.os == 'ubuntu-latest' &&
-          matrix.node-version == '16'
+          matrix.node-version == '20'
       uses: ArtiomTr/jest-coverage-report-action@v2
       with:
         test-script: npm run coverage
